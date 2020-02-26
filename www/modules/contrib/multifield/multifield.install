@@ -1,0 +1,97 @@
+<?php
+/**
+ * @file
+ * Install, uninstall, and update functions.
+ */
+
+/**
+ * Implements hook_field_schema().
+ */
+function multifield_field_schema($field) {
+  $schema = array();
+
+  // Use the same query from multifield_type_get_subfields() but since
+  // we want to ensure we're using the most current data, the function isn't
+  // used.
+  $machine_name = multifield_extract_multifield_machine_name($field);
+  $field_names = array();
+  $config_names = config_get_names_with_prefix('field.instance.');
+  foreach ($config_names as $config_name) {
+    $field = config_get($config_name);
+    if ($field['bundle'] == $machine_name && $field['entity_type'] == 'multifield') {
+      $field_names[] = $field['field_name'];
+    }
+  }
+
+  if (empty($field_names)) {
+    return $schema;
+  }
+
+  foreach ($field_names as $name) {
+    $subfield_data = field_read_fields(array('field_name' => $name));
+    $subfields[$name] = reset($subfield_data);
+  }
+
+  foreach ($subfields as $field_name => $subfield) {
+    // Translate the subfield columns to the multifield.
+    foreach ($subfield['columns'] as $key => $column) {
+      // We need to ensure that subfields can always be saved with NULL
+      // values.
+      if (!empty($column['not null'])) {
+        $column['not null'] = FALSE;
+      }
+      $schema['columns'][$field_name . '_' . $key] = $column;
+    }
+
+    // Translate the subfield indexes to the multifield.
+    foreach ($subfield['indexes'] as $index_name => $index_fields) {
+      $index_name = $field_name . '_' . $index_name;
+      foreach ($index_fields as $index_field) {
+        // Indexes are arrays of column name strings and/or an array in the
+        // format of array(column-name, bytes-to-index), so we need to handle
+        // both formats.
+        if (is_array($index_field)) {
+          $schema['indexes'][$index_name][] = array($field_name . '_' . $index_field[0], $index_field[1]);
+        }
+        else {
+          $schema['indexes'][$index_name][] = $field_name . '_' . $index_field;
+        }
+      }
+    }
+
+    // Translate the subfield foreign keys to the multifield.
+    foreach ($subfield['foreign keys'] as $foreign_key_name => $foreign_key) {
+      foreach ($foreign_key['columns'] as $key => $value) {
+        unset($foreign_key['columns'][$key]);
+        $foreign_key['columns'][$field_name . '_' . $key] = $value;
+      }
+      $schema['foreign keys'][$field_name . '_' . $foreign_key_name] = $foreign_key;
+    }
+  }
+
+  // Add a unique ID column.
+  $schema['columns']['id'] = array(
+    'type' => 'int',
+    'unsigned' => TRUE,
+    'not null' => TRUE,
+  );
+  $schema['indexes']['id'] = array('id');
+
+  return $schema;
+}
+
+/**
+ * Implements hook_update_last_removed().
+ */
+function multifield_update_last_removed() {
+  return 7101;
+}
+
+/**
+ * Delete the empty multifield database table.
+ */
+function multifield_update_1000() {
+  if (db_table_exists('multifield')) {
+    db_drop_table('multifield');
+  }
+}

@@ -1,0 +1,10 @@
+{
+    "_config_name": "field.bundle.multifield.field_properties2",
+    "bundle": "field_properties2",
+    "entity_type": "multifield",
+    "view_modes": [],
+    "extra_fields": {
+        "form": [],
+        "display": []
+    }
+}

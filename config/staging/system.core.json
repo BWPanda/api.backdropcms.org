@@ -57,7 +57,7 @@
     "site_mail": "no-reply@backdropcms.org",
     "site_slogan": "Documentation for Backdrop CMS developers.",
     "theme_default": "api_borg",
-    "theme_debug": false,
+    "theme_debug": true,
     "user_admin_role": "3",
     "user_cancel_method": "user_cancel_block",
     "user_email_verification": 1,

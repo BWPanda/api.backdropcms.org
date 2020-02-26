@@ -1,0 +1,40 @@
+{
+    "_config_name": "field.instance.node.fapi_element.field_usage_examples",
+    "field_name": "field_usage_examples",
+    "entity_type": "node",
+    "bundle": "fapi_element",
+    "label": "Usage examples",
+    "widget": {
+        "weight": "4",
+        "type": "multifield_default",
+        "module": "multifield",
+        "active": 0,
+        "settings": []
+    },
+    "description": "",
+    "required": 0,
+    "deleted": 0,
+    "default_value": [
+        {
+            "id": null,
+            "actions": {
+                "remove_button": "Remove"
+            }
+        }
+    ],
+    "default_value_function": null,
+    "settings": {
+        "user_register_form": false
+    },
+    "display": {
+        "default": {
+            "label": "inline",
+            "type": "multifield_default",
+            "weight": "1",
+            "settings": {
+                "view_mode": "default"
+            },
+            "module": "multifield"
+        }
+    }
+}

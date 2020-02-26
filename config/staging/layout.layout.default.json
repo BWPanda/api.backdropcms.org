@@ -4,6 +4,7 @@
     "name": "default",
     "title": "Default Layout",
     "description": null,
+    "renderer_name": "standard",
     "module": "layout",
     "weight": 0,
     "storage": 2,
@@ -23,6 +24,7 @@
             "09f11b4e-877e-45ab-9000-a4c6254faa04"
         ],
         "content": [
+            "97e68c6d-969b-4925-8e22-349cab2e4873",
             "default"
         ],
         "sidebar": [
@@ -118,6 +120,41 @@
                         }
                     }
                 }
+            }
+        },
+        "97e68c6d-969b-4925-8e22-349cab2e4873": {
+            "plugin": "backdropapi:form_api_matrix",
+            "data": {
+                "module": "backdropapi",
+                "delta": "form_api_matrix",
+                "settings": {
+                    "title_display": "default",
+                    "title": "",
+                    "style": "default",
+                    "block_settings": [],
+                    "contexts": []
+                },
+                "uuid": "97e68c6d-969b-4925-8e22-349cab2e4873",
+                "style": {
+                    "plugin": "default",
+                    "data": {
+                        "settings": {
+                            "classes": ""
+                        }
+                    }
+                },
+                "conditions": [
+                    {
+                        "plugin": "path",
+                        "data": {
+                            "settings": {
+                                "visibility_setting": "1",
+                                "paths": "form-api",
+                                "load_condition_nojs": "Load condition"
+                            }
+                        }
+                    }
+                ]
             }
         },
         "default": {

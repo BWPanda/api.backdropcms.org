@@ -1,0 +1,24 @@
+{
+    "_config_name": "field.field.field_properties",
+    "field_name": "field_properties",
+    "type": "multifield",
+    "translatable": false,
+    "module": "multifield",
+    "active": 1,
+    "locked": 0,
+    "cardinality": "-1",
+    "deleted": 0,
+    "entity_types": [],
+    "settings": {
+        "hide_blank_items": 1,
+        "entity_translation_sync": [
+            "id"
+        ]
+    },
+    "storage": {
+        "type": "field_sql_storage",
+        "settings": [],
+        "module": "field_sql_storage",
+        "active": 1
+    }
+}

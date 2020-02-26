@@ -57,3 +57,82 @@ function api_borg_preprocess_search_results(&$variables) {
     }
   }
 }
+
+/**
+ * Prepares variables for unformatted views templates.
+ * @see views-view-unformatted.tpl.php
+ */
+function api_borg_preprocess_views_view_unformatted(&$variables) {
+  if ($variables['view']->name == 'form_api') {
+    // Re-word the title (content type).
+    if (!empty($variables['title'])) {
+      if ($variables['title'] == 'fapi_element') {
+        $variables['title'] = t('Elements');
+      }
+      elseif ($variables['title'] == 'fapi_property') {
+        $variables['title'] = t('Properties');
+      }
+    }
+  }
+}
+
+/*******************************************************************************
+ * Theme functions: override the output of theme functions.
+ ******************************************************************************/
+
+/**
+ * Overrides theme_views_view_field().
+ */
+function api_borg_views_view_field($variables) {
+  $view = $variables['view'];
+  $field = $variables['field'];
+  $row = $variables['row'];
+
+  if ($variables['view']->name == 'form_api') {
+    // Add a wrapper H3 tag with an ID, and add a '#' to property names.
+    if ($field->field == 'title') {
+      if ($row->node_type == 'fapi_property') {
+        $output = '#' . $variables['output'];
+      }
+      else {
+        $output = $variables['output'];
+      }
+
+      $variables['output'] = '<h3 id="' . $variables['output'] . '">' . $output . '</h3>';
+    }
+    elseif ($field->field == 'field_properties') {
+      dpm($variables['output']);
+      dpm($field);
+    }
+  }
+
+  return $variables['output'];
+}
+
+/**
+ * Overrides theme_field().
+ */
+// function api_borg_field($variables) {
+//   dpm($variables);
+//   $output = '';
+//
+//   // Render the label, if it's not hidden.
+//   if (!$variables['label_hidden']) {
+//     $output .= '<div class="field-label">' . $variables['label'] . ':&nbsp;</div>';
+//   }
+//
+//   // Render the items.
+//   $content_attributes = (isset($variables['content_attributes'])) ? backdrop_attributes($variables['content_attributes']) : '';
+//   $output .= '<div class="field-items"' . $content_attributes . '>';
+//   foreach ($variables['items'] as $delta => $item) {
+//     $classes = 'field-item ' . ($delta % 2 ? 'odd' : 'even');
+//     $item_attributes = (isset($variables['item_attributes'][$delta])) ? backdrop_attributes($variables['item_attributes'][$delta]) : '';
+//     $output .= '<div class="' . $classes . '"' . $item_attributes . '>' . backdrop_render($item) . '</div>';
+//   }
+//   $output .= '</div>';
+//
+//   // Render the top-level DIV.
+//   dpm($output = '<div class="' . implode(' ', $variables['classes']) . '"' . backdrop_attributes($variables['attributes']) . '>' . $output . '</div>');
+//
+//   return $output;
+// }

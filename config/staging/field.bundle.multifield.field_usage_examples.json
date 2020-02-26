@@ -1,0 +1,10 @@
+{
+    "_config_name": "field.bundle.multifield.field_usage_examples",
+    "bundle": "field_usage_examples",
+    "entity_type": "multifield",
+    "view_modes": [],
+    "extra_fields": {
+        "form": [],
+        "display": []
+    }
+}

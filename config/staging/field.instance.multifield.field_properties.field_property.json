@@ -1,0 +1,39 @@
+{
+    "_config_name": "field.instance.multifield.field_properties.field_property",
+    "field_name": "field_property",
+    "entity_type": "multifield",
+    "bundle": "field_properties",
+    "label": "Property",
+    "widget": {
+        "weight": "1",
+        "type": "node_reference_autocomplete",
+        "module": "node_reference",
+        "active": 1,
+        "settings": {
+            "autocomplete_match": "contains",
+            "size": "60",
+            "autocomplete_path": "node_reference/autocomplete"
+        }
+    },
+    "description": "",
+    "required": 1,
+    "deleted": 0,
+    "default_value": [
+        {
+            "nid": null
+        }
+    ],
+    "default_value_function": null,
+    "settings": {
+        "user_register_form": false
+    },
+    "display": {
+        "default": {
+            "label": "hidden",
+            "type": "node_reference_plain",
+            "weight": "0",
+            "settings": [],
+            "module": "node_reference"
+        }
+    }
+}

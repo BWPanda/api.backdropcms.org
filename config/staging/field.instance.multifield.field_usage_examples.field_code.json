@@ -1,0 +1,38 @@
+{
+    "_config_name": "field.instance.multifield.field_usage_examples.field_code",
+    "field_name": "field_code",
+    "entity_type": "multifield",
+    "bundle": "field_usage_examples",
+    "label": "Code",
+    "widget": {
+        "weight": "2",
+        "type": "text_textarea",
+        "module": "text",
+        "active": 1,
+        "settings": {
+            "rows": "10"
+        }
+    },
+    "description": "",
+    "required": 0,
+    "deleted": 0,
+    "default_value": [
+        {
+            "value": ""
+        }
+    ],
+    "default_value_function": null,
+    "settings": {
+        "text_processing": "0",
+        "user_register_form": false
+    },
+    "display": {
+        "default": {
+            "label": "hidden",
+            "type": "text_default",
+            "settings": [],
+            "module": "text",
+            "weight": 1
+        }
+    }
+}

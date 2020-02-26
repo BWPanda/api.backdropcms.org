@@ -1,0 +1,40 @@
+{
+    "_config_name": "field.instance.node.fapi_element.field_properties",
+    "field_name": "field_properties",
+    "entity_type": "node",
+    "bundle": "fapi_element",
+    "label": "Properties",
+    "widget": {
+        "weight": "2",
+        "type": "multifield_default",
+        "module": "multifield",
+        "active": 0,
+        "settings": []
+    },
+    "description": "",
+    "required": 1,
+    "deleted": 0,
+    "default_value": [
+        {
+            "id": null,
+            "actions": {
+                "remove_button": "Remove"
+            }
+        }
+    ],
+    "default_value_function": null,
+    "settings": {
+        "user_register_form": false
+    },
+    "display": {
+        "default": {
+            "label": "inline",
+            "type": "multifield_default",
+            "weight": "2",
+            "settings": {
+                "view_mode": "default"
+            },
+            "module": "multifield"
+        }
+    }
+}
